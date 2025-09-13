@@ -4,22 +4,288 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dr.Noureddine Bekkis - Portfolio</title>
-    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;70.0;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Cairo:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
     <style>
+      /* Basic Reset & Typography */
+      :root {
+        --color-text: #1f2937;
+        --color-text-light: #4b5563;
+        --color-primary: #3b82f6;
+        --color-primary-hover: #2563eb;
+        --color-bg: #f9fafb;
+        --color-white: #ffffff;
+        --color-dark: #111827;
+        --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1),
+          0 2px 4px -2px rgb(0 0 0 / 0.1);
+        --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1),
+          0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1),
+          0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
       body {
         font-family: "Inter", sans-serif;
+        background-color: var(--color-bg);
+        color: var(--color-text);
+        margin: 0;
+        padding-top: 68px; /* Offset for fixed header */
       }
-      /* Style for the video reel placeholder */
+
+      .container {
+        max-width: 1280px;
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: 700;
+        margin: 0;
+      }
+
+      h1 {
+        font-size: 3rem;
+      }
+      h2 {
+        font-size: 2.25rem;
+      }
+      h3 {
+        font-size: 1.25rem;
+      }
+      p {
+        margin: 0;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      /* Header and Navigation */
+      .main-header {
+        background-color: var(--color-white);
+        box-shadow: var(--shadow-md);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 50;
+      }
+
+      .main-nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-top: 0.75rem;
+        padding-bottom: 0.75rem;
+      }
+
+      .nav-brand {
+        font-size: 1.25rem;
+        font-weight: bold;
+      }
+
+      .nav-links {
+        display: none; /* Hidden on mobile */
+        align-items: center;
+      }
+
+      .nav-links a {
+        color: var(--color-text-light);
+        transition: color 0.3s ease;
+        margin-left: 1.5rem;
+      }
+
+      .lang-switcher {
+        display: flex;
+        gap: 0.5rem;
+        margin-left: 1.5rem;
+        border-left: 1px solid #e5e7eb;
+        padding-left: 1.5rem;
+      }
+
+      .lang-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        color: var(--color-text-light);
+      }
+      .lang-btn.active {
+        color: var(--color-primary);
+      }
+
+      .nav-links a:hover {
+        color: var(--color-primary);
+      }
+
+      .menu-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+      }
+
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.is-open {
+        display: block;
+        border-top: 1px solid #e5e7eb;
+      }
+      .mobile-menu a,
+      .mobile-menu .lang-switcher {
+        display: block;
+        padding: 0.75rem 1rem;
+        font-size: 0.875rem;
+        color: var(--color-text-light);
+      }
+      .mobile-menu a:hover {
+        background-color: #f3f4f6;
+      }
+      .mobile-menu .lang-switcher {
+        justify-content: center;
+        border-left: none;
+        padding-left: 1rem;
+      }
+
+      /* Hero Section */
+      #home {
+        min-height: calc(100vh - 68px); /* Adjust for header height */
+        display: flex;
+        align-items: center;
+        background-color: var(--color-white);
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+      }
+
+      .hero-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+
+      .hero-image-container {
+        margin-bottom: 2rem;
+      }
+
+      .hero-image {
+        border-radius: 9999px;
+        box-shadow: var(--shadow-2xl);
+        width: 16rem;
+        height: 16rem;
+        object-fit: cover;
+        border: 8px solid var(--color-white);
+      }
+
+      .hero-text h1 {
+        line-height: 1.1;
+      }
+      .hero-text .subtitle {
+        font-size: 1.25rem;
+        color: var(--color-primary);
+        font-weight: 600;
+        margin-top: 0.5rem;
+      }
+      .hero-text .slogan {
+        margin-top: 1rem;
+        font-size: 1.125rem;
+        color: var(--color-text-light);
+        text-align: justify;
+      }
+
+      .social-icons {
+        margin-top: 2rem;
+        display: flex;
+        justify-content: center;
+        gap: 1.5rem;
+      }
+
+      .social-icons a {
+        color: var(--color-text-light);
+        transition: color 0.3s ease;
+      }
+      .social-icons a:hover {
+        color: var(--color-primary-hover);
+      }
+
+      /* Services Section */
+      .section {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+      }
+      .section-header {
+        text-align: center;
+        margin-bottom: 3rem;
+      }
+      .section-header h2 {
+        margin-bottom: 0.5rem;
+      }
+      .section-header p {
+        color: var(--color-text-light);
+      }
+
+      .services-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 2rem;
+      }
+
+      .service-card {
+        background-color: var(--color-white);
+        padding: 2rem;
+        border-radius: 0.75rem;
+        box-shadow: var(--shadow-lg);
+        transition: all 0.3s ease;
+      }
+      .service-card:hover {
+        transform: translateY(-0.5rem);
+        box-shadow: var(--shadow-xl);
+      }
+      .service-card h3 {
+        margin-bottom: 1.5rem;
+      }
+      .service-card p {
+        text-align: justify;
+        color: var(--color-text-light);
+      }
+
+      /* Gallery & Events */
+      .gallery-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+      }
+      .gallery-item img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        max-width: 100%;
+        transition: transform 0.3s ease;
+      }
+      .gallery-item img:hover {
+        transform: scale(1.05);
+      }
+      .gallery-item-container {
+        overflow: hidden;
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-md);
+      }
+
       .reel-placeholder {
         position: relative;
         background-color: #1a1a1a;
-        overflow: hidden;
       }
       .reel-placeholder .play-icon {
         position: absolute;
@@ -27,7 +293,6 @@
         left: 50%;
         transform: translate(-50%, -50%);
         color: rgba(255, 255, 255, 0.8);
-        font-size: 3rem;
         transition: transform 0.2s ease-in-out;
       }
       .reel-placeholder:hover .play-icon {
@@ -36,171 +301,286 @@
       .reel-placeholder img {
         opacity: 0.7;
       }
+
+      .events-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+      }
+      .event-card {
+        background-color: var(--color-white);
+        border-radius: 0.5rem;
+        box-shadow: var(--shadow-lg);
+        overflow: hidden;
+      }
+      .event-card img {
+        width: 100%;
+        height: 12rem;
+        object-fit: cover;
+        transition: opacity 0.3s ease;
+      }
+      .event-card:hover img {
+        opacity: 0.8;
+      }
+      .event-card .p-6 {
+        padding: 1.5rem;
+      }
+
+      /* Contact Section */
+      .contact-links {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+      }
+      .contact-link {
+        display: flex;
+        align-items: center;
+        color: var(--color-text-light);
+        transition: color 0.3s ease;
+      }
+      .contact-link:hover {
+        color: var(--color-primary);
+      }
+      .contact-link svg {
+        margin-right: 0.75rem;
+      }
+      .contact-link span {
+        font-size: 1.125rem;
+      }
+
+      /* Footer */
+      .main-footer {
+        background-color: var(--color-dark);
+        color: var(--color-white);
+        padding: 1.5rem 0;
+        text-align: center;
+      }
+
+      /* Responsive Styles */
+      @media (min-width: 768px) {
+        .menu-btn {
+          display: none;
+        }
+        .nav-links {
+          display: flex;
+        }
+
+        .hero-content {
+          flex-direction: row;
+          text-align: left;
+        }
+        .hero-image-container {
+          width: 50%;
+          margin-bottom: 0;
+        }
+        .hero-text {
+          width: 50%;
+          padding-left: 3rem;
+        }
+        .hero-image {
+          width: 20rem;
+          height: 20rem;
+        }
+        h1 {
+          font-size: 3.75rem;
+        }
+        .hero-text .subtitle {
+          font-size: 1.5rem;
+        }
+        .social-icons {
+          justify-content: flex-start;
+        }
+
+        .services-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .events-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .gallery-grid {
+          grid-template-columns: repeat(4, 1fr);
+        }
+
+        .contact-links {
+          flex-direction: row;
+          justify-content: center;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .services-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        .events-grid {
+          grid-template-columns: repeat(3, 1fr);
+        }
+      }
+
+      /* RTL (Arabic) Styles */
+      html[lang="ar"] {
+        direction: rtl;
+      }
+      html[lang="ar"] body {
+        font-family: "Cairo", sans-serif;
+      }
+      html[lang="ar"] .section-header,
+      html[lang="ar"] .event-card .p-6 {
+        text-align: center;
+      }
+      html[lang="ar"] .nav-links a {
+        margin-left: 0;
+        margin-right: 1.5rem;
+      }
+      html[lang="ar"] .lang-switcher {
+        margin-left: 0;
+        margin-right: 1.5rem;
+        padding-left: 0;
+        padding-right: 1.5rem;
+        border-left: none;
+        border-right: 1px solid #e5e7eb;
+      }
+      html[lang="ar"] .contact-link svg {
+        margin-right: 0;
+        margin-left: 0.75rem;
+      }
+      @media (min-width: 768px) {
+        html[lang="ar"] .hero-content {
+          text-align: right;
+        }
+        html[lang="ar"] .hero-text {
+          padding-left: 0;
+          padding-right: 3rem;
+        }
+        html[lang="ar"] .social-icons {
+          justify-content: flex-end;
+        }
+      }
     </style>
   </head>
-  <body class="bg-gray-50 text-gray-800">
+  <body>
     <!-- Navigation Bar -->
-    <header class="bg-white shadow-md fixed w-full top-0 z-50">
-      <nav
-        class="container mx-auto px-6 py-3 flex justify-between items-center"
-      >
-        <div class="text-xl font-bold text-gray-800">
-          <a href="#home">Dr.Noureddine Bekkis</a>
+    <header class="main-header">
+      <nav class="container main-nav">
+        <div class="nav-brand">
+          <a href="#home" data-key="navBrand">Dr.Noureddine Bekkis</a>
         </div>
-        <div class="hidden md:flex space-x-6">
-          <a
-            href="#services"
-            class="text-gray-600 hover:text-blue-600 transition duration-300"
-            >Services</a
-          >
-          <a
-            href="#gallery"
-            class="text-gray-600 hover:text-blue-600 transition duration-300"
-            >Gallery</a
-          >
-          <a
-            href="#events"
-            class="text-gray-600 hover:text-blue-600 transition duration-300"
-            >Events</a
-          >
-          <a
-            href="#contact"
-            class="text-gray-600 hover:text-blue-600 transition duration-300"
-            >Contact</a
-          >
+        <div class="nav-links">
+          <a href="#services" data-key="navServices">Services</a>
+          <a href="#gallery" data-key="navGallery">Gallery</a>
+          <a href="#events" data-key="navEvents">Events</a>
+          <a href="#contact" data-key="navContact">Contact</a>
+          <div class="lang-switcher">
+            <button class="lang-btn active" data-lang="fr">FR</button>
+            <button class="lang-btn" data-lang="ar">AR</button>
+          </div>
         </div>
-        <!-- Mobile Menu Button -->
-        <div class="md:hidden">
-          <button id="menu-btn" class="text-gray-600 focus:outline-none">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16m-7 6h7"
-              ></path>
-            </svg>
-          </button>
-        </div>
+        <button id="menu-btn" class="menu-btn">
+          <svg
+            class="w-6 h-6"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16m-7 6h7"
+            ></path>
+          </svg>
+        </button>
       </nav>
       <!-- Mobile Menu -->
-      <div id="mobile-menu" class="hidden md:hidden">
-        <a
-          href="#services"
-          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100"
-          >Services</a
-        >
-        <a
-          href="#gallery"
-          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100"
-          >Gallery</a
-        >
-        <a
-          href="#events"
-          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100"
-          >Events</a
-        >
-        <a
-          href="#contact"
-          class="block py-2 px-4 text-sm text-gray-600 hover:bg-gray-100"
-          >Contact</a
-        >
+      <div id="mobile-menu" class="mobile-menu">
+        <a href="#services" data-key="navServices">Services</a>
+        <a href="#gallery" data-key="navGallery">Gallery</a>
+        <a href="#events" data-key="navEvents">Events</a>
+        <a href="#contact" data-key="navContact">Contact</a>
+        <div class="lang-switcher">
+          <button class="lang-btn active" data-lang="fr">FR</button>
+          <button class="lang-btn" data-lang="ar">AR</button>
+        </div>
       </div>
     </header>
 
     <main>
       <!-- Hero Section -->
-      <section id="home" class="min-h-screen flex items-center bg-white pt-16">
-        <div
-          class="container mx-auto px-6 py-12 flex flex-col md:flex-row items-center text-center md:text-left"
-        >
-          <div
-            class="flex items-center justify-center h-screen md:w-1/2 mb-8 md:mb-0"
-          >
+      <section id="home">
+        <div class="container hero-content">
+          <div class="hero-image-container">
             <img
               src="IMG/dr bekis.jpg"
               alt="Dr.Noureddine Bekkis"
-              class="rounded-full shadow-2xl mx-auto md:mx-0 w-64 h-64 md:w-80 md:h-80 object-cover border-8 border-white"
+              class="hero-image"
             />
           </div>
-          <div class="md:w-1/2 md:pl-12">
-            <h1
-              class="text-5xl md:text-6xl font-extrabold text-gray-900 leading-tight"
-            >
-              Dr.Noureddine Bekkis
-            </h1>
-            <p class="text-xl md:text-2xl text-blue-600 font-semibold mt-2">
+          <div class="hero-text">
+            <h1 data-key="heroName">Dr.Noureddine Bekkis</h1>
+            <p class="subtitle" data-key="heroSubtitle">
               Professeur de sociologie politique, Consultant.
             </p>
-            <p class="mt-4 text-lg text-justify text-gray-600">
+            <p class="slogan" data-key="heroSlogan">
               "Penser la société pour imaginer la politique de demain."
             </p>
-          </div>
-          <div class="mt-8 flex justify-center md:justify-start space-x-6">
-            <!-- Facebook Icon -->
-            <a
-              href="https://www.facebook.com/nbekkis"
-              target="_blank"
-              class="text-gray-500 hover:text-blue-700 transition-colors duration-300"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
+            <div class="social-icons">
+              <!-- Facebook Icon -->
+              <a href="https://www.facebook.com/nbekkis" target="_blank">
+                <svg
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <!-- YouTube Icon -->
+              <a
+                href="https://www.youtube.com/@NoureddineBekkis"
+                target="_blank"
               >
-                <path
-                  fill-rule="evenodd"
-                  d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a>
-            <!-- YouTube Icon -->
-            <a
-              href="https://www.youtube.com/@NoureddineBekkis"
-              target="_blank"
-              class="text-gray-500 hover:text-red-600 transition-colors duration-300"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="currentColor"
-                viewBox="0 0 24 24"
-                aria-hidden="true"
-              >
-                <path
-                  fill-rule="evenodd"
-                  d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.78 22 12 22 12s0 3.22-.42 4.814a2.506 2.506 0 0 1-1.768 1.768c-1.594.42-7.812.42-7.812.42s-6.218 0-7.812-.42a2.506 2.506 0 0 1-1.768-1.768C2 15.22 2 12 2 12s0-3.22.42-4.814a2.506 2.506 0 0 1 1.768-1.768C5.782 5 12 5 12 5s6.218 0 7.812.418zM9.94 15.58V8.42l5.58 3.58-5.58 3.58z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </a>
+                <svg
+                  width="32"
+                  height="32"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                  aria-hidden="true"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M19.812 5.418c.861.23 1.538.907 1.768 1.768C21.998 8.78 22 12 22 12s0 3.22-.42 4.814a2.506 2.506 0 0 1-1.768 1.768c-1.594.42-7.812.42-7.812.42s-6.218 0-7.812-.42a2.506 2.506 0 0 1-1.768-1.768C2 15.22 2 12 2 12s0-3.22.42-4.814a2.506 2.506 0 0 1 1.768-1.768C5.782 5 12 5 12 5s6.218 0 7.812.418zM9.94 15.58V8.42l5.58 3.58-5.58 3.58z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
       <!-- Services Section -->
-      <section id="services" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-4xl font-bold mb-2">Services</h2>
-          <p class="text-gray-600 mb-12">
-            Dedicated to education, consultation, and advocacy.
-          </p>
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service Card 1 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              <h2 class="text-xl font-bold mb-6">
-                📚 Enseignement & Formation
-              </h2>
-              <p class="text-justify text-gray-600">
+      <section id="services" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-key="servicesTitle">Services</h2>
+            <p data-key="servicesSubtitle">
+              Dedicated to education, consultation, and advocacy.
+            </p>
+          </div>
+          <div class="services-grid">
+            <div class="service-card">
+              <h3 data-key="service1Title">📚 Enseignement & Formation</h3>
+              <p data-key="service1Text">
                 J’assure des cours et séminaires en sociologie politique, en
                 partageant les concepts clés et les débats actuels. J’anime
                 également des conférences publiques et des ateliers de
@@ -209,12 +589,9 @@
                 de leurs mémoires et thèses.
               </p>
             </div>
-            <!-- Service Card 2 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              <h2 class="text-xl font-bold mb-6">🏛️ Recherche & Conseil</h2>
-              <p class="text-justify text-gray-600">
+            <div class="service-card">
+              <h3 data-key="service2Title">🏛️ Recherche & Conseil</h3>
+              <p data-key="service2Text">
                 Je conçois et réalise des enquêtes sociopolitiques, allant des
                 sondages aux études de terrain. J’analyse les politiques
                 publiques pour en évaluer l’impact social et politique. Mon
@@ -223,12 +600,9 @@
                 prévenir et résoudre les conflits sociaux.
               </p>
             </div>
-            <!-- Service Card 3 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              <h3 class="text-xl font-bold mb-6">📢 Médias & Vulgarisation</h3>
-              <p class="text-justify text-gray-600">
+            <div class="service-card">
+              <h3 data-key="service3Title">📢 Médias & Vulgarisation</h3>
+              <p data-key="service3Text">
                 J’apporte des analyses claires et accessibles dans la presse et
                 les médias audiovisuels. Je publie des articles d’opinion et des
                 rapports spécialisés pour éclairer le débat public. Mon rôle est
@@ -237,14 +611,9 @@
                 actuels.
               </p>
             </div>
-            <!-- Service Card 4 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              <h1 class="text-xl font-bold mb-4">
-                👥 Accompagnement & Coaching
-              </h1>
-              <p class="text-justify text-gray-600">
+            <div class="service-card">
+              <h3 data-key="service4Title">👥 Accompagnement & Coaching</h3>
+              <p data-key="service4Text">
                 Je propose des consultations individuelles aux étudiants,
                 journalistes et acteurs associatifs. J’organise des formations
                 pour les ONG et associations afin de renforcer leurs compétences
@@ -253,12 +622,9 @@
                 stratégies de responsabilité sociale durables.
               </p>
             </div>
-            <!-- Service Card 5 -->
-            <div
-              class="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transform hover:-translate-y-2 transition-all duration-300"
-            >
-              <h3 class="text-xl font-bold mb-6">🧭 Stratégie & Prospective</h3>
-              <p class="text-gray-600 text-justify">
+            <div class="service-card">
+              <h3 data-key="service5Title">🧭 Stratégie & Prospective</h3>
+              <p data-key="service5Text">
                 J’accompagne décideurs et organisations dans la compréhension
                 des tendances sociopolitiques à venir. Mon expertise aide à
                 identifier les risques, anticiper les changements et développer
@@ -270,146 +636,93 @@
       </section>
 
       <!-- Gallery Section -->
-      <section id="gallery" class="py-20 bg-white">
-        <div class="container mx-auto px-6">
-          <div class="text-center mb-12">
-            <h2 class="text-4xl font-extrabold text-gray-900 tracking-tight">
-              Sensibiliser et Inspirer
-            </h2>
-            <p class="mt-4 text-lg text-gray-600">
-              Moments du terrain, la communauté.
-            </p>
+      <section id="gallery" class="section bg-white">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-key="galleryTitle">Sensibiliser et Inspirer</h2>
+            <p data-key="gallerySubtitle">Moments du terrain, la communauté.</p>
           </div>
-          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <!-- Photo 1 -->
-            <div class="grid gap-4">
-              <div class="overflow-hidden rounded-lg shadow-md">
-                <img
-                  src="IMG/gallery2.jpg"
-                  alt=""
-                  class="h-full w-full max-w-full transition-transform duration-300 hover:scale-105"
-                />
-              </div>
+          <div class="gallery-grid">
+            <div class="gallery-item gallery-item-container">
+              <img src="IMG/gallery2.jpg" alt="Gallery photo 1" />
             </div>
-            <!-- Reel 1 -->
-            <div class="grid gap-4">
-              <div
-                class="reel-placeholder rounded-lg shadow-md aspect-w-9 aspect-h-16"
+            <div class="gallery-item gallery-item-container reel-placeholder">
+              <img src="IMG/reel2.jpg" alt="Reel Placeholder 1" />
+              <a
+                href="https://www.facebook.com/reel/495774389971048"
+                target="_blank"
               >
-                <img
-                  src="IMG/reel2.jpg"
-                  class="h-full w-full max-w-full transition-transform duration-300 hover:scale-105"
-                  alt="Reel Placeholder"
-                />
-                <a
-                  href="https://www.facebook.com/reel/495774389971048"
-                  target="_blank"
-                >
-                  <div class="play-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-16 w-16"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </a>
-              </div>
+                <div class="play-icon">
+                  <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </a>
             </div>
-            <!-- Photo 2 -->
-            <div class="grid gap-4">
-              <div class="overflow-hidden rounded-lg shadow-md">
-                <img
-                  class="h-auto w-full max-w-full transition-transform duration-300 hover:scale-105"
-                  src="IMG/4.jpg"
-                  alt=""
-                />
-              </div>
+            <div class="gallery-item gallery-item-container">
+              <img src="IMG/4.jpg" alt="Gallery photo 2" />
             </div>
-            <!-- Reel 2 -->
-            <div class="grid gap-4">
-              <div
-                class="reel-placeholder rounded-lg shadow-md aspect-w-9 aspect-h-16"
+            <div class="gallery-item gallery-item-container reel-placeholder">
+              <img src="IMG/reel1.png" alt="Reel Placeholder 2" />
+              <a
+                href="https://www.facebook.com/reel/8677526288971243"
+                target="_blank"
               >
-                <img
-                  class="h-full w-full object-cover"
-                  src="IMG/reel1.png"
-                  alt="Reel Placeholder"
-                />
-
-                <a
-                  href="https://www.facebook.com/reel/8677526288971243"
-                  target="_blank"
-                >
-                  <div class="play-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-16 w-16"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fill-rule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
-                        clip-rule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                </a>
-              </div>
+                <div class="play-icon">
+                  <svg
+                    width="64"
+                    height="64"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                  >
+                    <path
+                      fill-rule="evenodd"
+                      d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z"
+                      clip-rule="evenodd"
+                    />
+                  </svg>
+                </div>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
       <!-- Events Section -->
-      <section id="events" class="py-20 bg-gray-50">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-4xl font-bold mb-2">Événements</h2>
-          <p class="text-gray-600 mb-12">
-            Join us at our next workshop, seminar, or community gathering.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
-              <img
-                src="IMG/event1.jpg"
-                alt="Event 1"
-                class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
-              />
+      <section id="events" class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-key="eventsTitle">Événements</h2>
+            <p data-key="eventsSubtitle">
+              Join us at our next workshop, seminar, or community gathering.
+            </p>
+          </div>
+          <div class="events-grid">
+            <div class="event-card">
+              <img src="IMG/event1.jpg" alt="Event 1" />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Courage – Engagement – Justice
-                </h3>
+                <h3 data-key="event1Title">Courage – Engagement – Justice</h3>
               </div>
             </div>
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
-              <img
-                src="IMG/event2.jpg"
-                alt="Event 2"
-                class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
-              />
+            <div class="event-card">
+              <img src="IMG/event2.jpg" alt="Event 2" />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Dialogue – Engagement – Harmonie
-                </h3>
+                <h3 data-key="event2Title">Dialogue – Engagement – Harmonie</h3>
               </div>
             </div>
-            <div class="bg-white rounded-lg shadow-lg overflow-hidden group">
-              <img
-                src="IMG/event3.jpg"
-                alt="Event 3"
-                class="w-full h-48 object-cover group-hover:opacity-80 transition-opacity"
-              />
+            <div class="event-card">
+              <img src="IMG/event3.jpg" alt="Event 3" />
               <div class="p-6">
-                <h3 class="text-xl font-semibold mb-2">
-                  Solidarité – Courage – Espoir
-                </h3>
+                <h3 data-key="event3Title">Solidarité – Courage – Espoir</h3>
               </div>
             </div>
           </div>
@@ -417,21 +730,19 @@
       </section>
 
       <!-- Contact Section -->
-      <section id="contact" class="py-20 bg-white">
-        <div class="container mx-auto px-6 text-center">
-          <h2 class="text-4xl font-bold mb-2">Contact</h2>
-          <p class="text-gray-600 mb-12">
-            Questions ou Collaboration ? Contactez-nous !
-          </p>
-          <div class="flex justify-center items-center space-x-8">
-            <!-- Email -->
-            <a
-              href="mailto:email@example.com"
-              class="flex items-center text-gray-700 hover:text-blue-600 transition-colors"
-            >
+      <section id="contact" class="section bg-white">
+        <div class="container">
+          <div class="section-header">
+            <h2 data-key="contactTitle">Contact</h2>
+            <p data-key="contactSubtitle">
+              Questions ou Collaboration ? Contactez-nous !
+            </p>
+          </div>
+          <div class="contact-links">
+            <a href="mailto:dr.bekkis@gmail.com" class="contact-link">
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10 mr-3"
+                width="40"
+                height="40"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -443,17 +754,16 @@
                   d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                 />
               </svg>
-              <span class="text-lg">dr.bekkis@gmail.com</span>
+              <span data-key="contactEmail">dr.bekkis@gmail.com</span>
             </a>
-            <!-- WhatsApp -->
             <a
-              href="https://wa.me/555555555"
+              href="https://wa.me/213555555555"
               target="_blank"
-              class="flex items-center text-gray-700 hover:text-green-600 transition-colors"
+              class="contact-link"
             >
               <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-10 w-10 mr-3"
+                width="40"
+                height="40"
                 fill="currentColor"
                 viewBox="0 0 24 24"
               >
@@ -461,7 +771,7 @@
                   d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.287.468-1.911 5.249 5.385-1.582.434.258z"
                 />
               </svg>
-              <span class="text-lg">+213 555 555 555</span>
+              <span data-key="contactPhone">+213 555 555 555</span>
             </a>
           </div>
         </div>
@@ -469,28 +779,146 @@
     </main>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-6">
-      <div class="container mx-auto px-6 text-center">
-        <p>&copy; 2025 Dr.Noureddine Bekkis. All rights reserved.</p>
+    <footer class="main-footer">
+      <div class="container">
+        <p data-key="footerText">
+          &copy; 2025 Dr.Noureddine Bekkis. All rights reserved.
+        </p>
       </div>
     </footer>
 
     <script>
+      // Translations object
+      const translations = {
+        fr: {
+          navBrand: "Dr.Noureddine Bekkis",
+          navServices: "Services",
+          navGallery: "Gallery",
+          navEvents: "Events",
+          navContact: "Contact",
+          heroName: "Dr.Noureddine Bekkis",
+          heroSubtitle: "Professeur de sociologie politique, Consultant.",
+          heroSlogan:
+            '"Penser la société pour imaginer la politique de demain."',
+          servicesTitle: "Services",
+          servicesSubtitle:
+            "Dedicated to education, consultation, and advocacy.",
+          service1Title: "📚 Enseignement & Formation",
+          service1Text:
+            "J’assure des cours et séminaires en sociologie politique, en partageant les concepts clés et les débats actuels. J’anime également des conférences publiques et des ateliers de méthodologie pour transmettre des outils pratiques de recherche. Enfin, j’accompagne étudiants et doctorants dans la réalisation de leurs mémoires et thèses.",
+          service2Title: "🏛️ Recherche & Conseil",
+          service2Text:
+            "Je conçois et réalise des enquêtes sociopolitiques, allant des sondages aux études de terrain. J’analyse les politiques publiques pour en évaluer l’impact social et politique. Mon expertise en gouvernance aide à renforcer transparence et participation citoyenne. J’interviens aussi en médiation pour prévenir et résoudre les conflits sociaux.",
+          service3Title: "📢 Médias & Vulgarisation",
+          service3Text:
+            "J’apporte des analyses claires et accessibles dans la presse et les médias audiovisuels. Je publie des articles d’opinion et des rapports spécialisés pour éclairer le débat public. Mon rôle est également de créer et soutenir des campagnes de sensibilisation citoyenne pour rapprocher la société des enjeux politiques actuels.",
+          service4Title: "👥 Accompagnement & Coaching",
+          service4Text:
+            "Je propose des consultations individuelles aux étudiants, journalistes et acteurs associatifs. J’organise des formations pour les ONG et associations afin de renforcer leurs compétences en mobilisation et plaidoyer. Je conseille aussi les entreprises sur les risques sociopolitiques et les aide à développer des stratégies de responsabilité sociale durables.",
+          service5Title: "🧭 Stratégie & Prospective",
+          service5Text:
+            "J’accompagne décideurs et organisations dans la compréhension des tendances sociopolitiques à venir. Mon expertise aide à identifier les risques, anticiper les changements et développer des stratégies adaptées pour relever les défis de demain.",
+          galleryTitle: "Sensibiliser et Inspirer",
+          gallerySubtitle: "Moments du terrain, la communauté.",
+          eventsTitle: "Événements",
+          eventsSubtitle:
+            "Join us at our next workshop, seminar, or community gathering.",
+          event1Title: "Courage – Engagement – Justice",
+          event2Title: "Dialogue – Engagement – Harmonie",
+          event3Title: "Solidarité – Courage – Espoir",
+          contactTitle: "Contact",
+          contactSubtitle: "Questions ou Collaboration ? Contactez-nous !",
+          contactEmail: "dr.bekkis@gmail.com",
+          contactPhone: "+213 555 555 555",
+          footerText: "© 2025 Dr.Noureddine Bekkis. All rights reserved.",
+        },
+        ar: {
+          navBrand: "د. نورالدين بكيس",
+          navServices: "خدمات",
+          navGallery: "معرض الصور",
+          navEvents: "فعاليات",
+          navContact: "اتصل بنا",
+          heroName: "د. نورالدين بكيس",
+          heroSubtitle: "أستاذ علم الاجتماع السياسي ومستشار.",
+          heroSlogan: '"نفكر في المجتمع لنتخيل سياسة الغد."',
+          servicesTitle: "الخدمات",
+          servicesSubtitle: "مكرس للتعليم والاستشارة والدعوة.",
+          service1Title: "📚 التعليم والتكوين",
+          service1Text:
+            "أقوم بتقديم دورات وندوات في علم الاجتماع السياسي، حيث أشارك المفاهيم الأساسية والنقاشات الحالية. كما أنشط مؤتمرات عامة وورش عمل منهجية لنقل أدوات البحث العملية. وأخيرًا، أرافق الطلاب وطلاب الدكتوراه في إنجاز مذكراتهم وأطروحاتهم.",
+          service2Title: "🏛️ البحث والاستشارة",
+          service2Text:
+            "أقوم بتصميم وإجراء استطلاعات سوسيوسياسية، تتراوح من استطلاعات الرأي إلى الدراسات الميدانية. أحلل السياسات العامة لتقييم تأثيرها الاجتماعي والسياسي. خبرتي في الحوكمة تساعد على تعزيز الشفافية والمشاركة المواطنة. كما أتدخل في الوساطة لمنع وحل النزاعات الاجتماعية.",
+          service3Title: "📢 الإعلام والتوعية",
+          service3Text:
+            "أقدم تحليلات واضحة ومفهومة في الصحافة ووسائل الإعلام السمعية والبصرية. أنشر مقالات رأي وتقارير متخصصة لتسليط الضوء على النقاش العام. يتمثل دوري أيضًا في إنشاء ودعم حملات التوعية المواطنة لتقريب المجتمع من القضايا السياسية الحالية.",
+          service4Title: "👥 المرافقة والتدريب",
+          service4Text:
+            "أقدم استشارات فردية للطلاب والصحفيين والفاعلين الجمعويين. أنظم دورات تدريبية للمنظمات غير الحكومية والجمعيات لتعزيز مهاراتهم في التعبئة والمناصرة. كما أنصح الشركات بشأن المخاطر السوسيوسياسية وأساعدها على تطوير استراتيجيات مسؤولية اجتماعية مستدامة.",
+          service5Title: "🧭 الاستراتيجية والاستشراف",
+          service5Text:
+            "أرافق صناع القرار والمنظمات في فهم الاتجاهات السوسيوسياسية المستقبلية. خبرتي تساعد على تحديد المخاطر، وتوقع التغييرات، وتطوير استراتيجيات ملائمة لمواجهة تحديات الغد.",
+          galleryTitle: "التوعية والإلهام",
+          gallerySubtitle: "لحظات من الميدان، المجتمع.",
+          eventsTitle: "الفعاليات",
+          eventsSubtitle:
+            "انضم إلينا في ورشة العمل أو الندوة أو التجمع المجتمعي القادم.",
+          event1Title: "شجاعة – التزام – عدالة",
+          event2Title: "حوار – التزام – انسجام",
+          event3Title: "تضامن – شجاعة – أمل",
+          contactTitle: "اتصل بنا",
+          contactSubtitle: "أسئلة أو تعاون؟ تواصلوا معنا!",
+          contactEmail: "dr.bekkis@gmail.com",
+          contactPhone: "+213 555 555 555",
+          footerText: "© 2025 د. نورالدين بكيس. جميع الحقوق محفوظة.",
+        },
+      };
+
+      // Function to set the language
+      const setLanguage = (lang) => {
+        document.documentElement.lang = lang;
+        const elements = document.querySelectorAll("[data-key]");
+        elements.forEach((el) => {
+          const key = el.getAttribute("data-key");
+          if (translations[lang] && translations[lang][key]) {
+            el.textContent = translations[lang][key];
+          }
+        });
+
+        // Update active button state
+        document.querySelectorAll(".lang-btn").forEach((btn) => {
+          btn.classList.remove("active");
+          if (btn.dataset.lang === lang) {
+            btn.classList.add("active");
+          }
+        });
+      };
+
+      // Event listeners for language buttons
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          setLanguage(e.target.dataset.lang);
+        });
+      });
+
       // JavaScript for mobile menu toggle
       const menuBtn = document.getElementById("menu-btn");
       const mobileMenu = document.getElementById("mobile-menu");
 
       menuBtn.addEventListener("click", () => {
-        mobileMenu.classList.toggle("hidden");
+        mobileMenu.classList.toggle("is-open");
       });
 
       // Close mobile menu when a link is clicked
       const mobileLinks = document.querySelectorAll("#mobile-menu a");
       mobileLinks.forEach((link) => {
         link.addEventListener("click", () => {
-          mobileMenu.classList.add("hidden");
+          mobileMenu.classList.remove("is-open");
         });
       });
+
+      // Set initial language
+      setLanguage("ar");
     </script>
   </body>
 </html>
